@@ -10,8 +10,18 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         HStack {
-            CardView()
-            CardView(isFaceUp: true)
+            CardView(
+                isFaceUp: true
+            )
+            CardView(
+                isFaceUp: true
+            )
+            CardView(
+                isFaceUp: true
+            )
+            CardView(
+                isFaceUp: true
+            )
         }
         .foregroundColor(
             .orange
@@ -21,19 +31,18 @@ struct ContentView: View {
 }
 
 struct CardView: View {
-    var isFaceUp: Bool = false
+    @State var isFaceUp: Bool = true
     var body: some View {
         ZStack {
+            let base : RoundedRectangle = RoundedRectangle(
+                cornerRadius: 12
+            )
             if isFaceUp{
-                RoundedRectangle(
-                    cornerRadius: 12
-                )
+                base
                 .foregroundColor(
                     .white
                 )
-                RoundedRectangle(
-                    cornerRadius: 12
-                )
+                base
                 .strokeBorder(
                     lineWidth: 2
                 )
@@ -44,10 +53,11 @@ struct CardView: View {
                     .largeTitle
                 )
             } else {
-                RoundedRectangle(
-                    cornerRadius: 12
-                )
+                base.fill()
             }
+        }
+        .onTapGesture {
+            isFaceUp.toggle()
         }
     }
 }
